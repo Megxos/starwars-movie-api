@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const database =  require("./config/database");
+const cors = require("cors");
 
 const { LOCAL_PORT, PORT } = process.env;
 
@@ -8,6 +9,7 @@ const { LOCAL_PORT, PORT } = process.env;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const base = "/api/v1";
 

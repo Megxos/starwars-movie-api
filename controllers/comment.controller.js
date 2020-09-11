@@ -59,7 +59,10 @@ exports.addComment = async(req, res)=>{
             data:{
                 statusCode: 201,
                 description: "comment added successfully",
-                result
+                comment: {
+                    comment,
+                    movie_title
+                }
             }
         });
     });
