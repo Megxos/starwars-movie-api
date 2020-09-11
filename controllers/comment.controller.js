@@ -1,6 +1,15 @@
 const database = require("../config/database");
 
 exports.addComment = async(req, res)=>{
+
+    await database.query("CREATE TABLE IF NOT EXISTS comments(id INT AUTO_INCREMENT NOT NULL, comment TEXT, ip_address TEXT, createdAt DATE)", (err, result, fields)=>{
+        if(err){
+            console.log(err);
+            process.exit();
+        }
+        console.log(result);
+    });
+
     let ip_address = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     let date = new Date;
     let today = date.toJSON().split("T", 1)[0];
