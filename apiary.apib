@@ -1,0 +1,84 @@
+FORMAT: 1A
+HOST: https://swapi-lite.herokuapp.com/api/v1
+
+# SWAPI-LITE
+
+Movie api for listing the names of Star Wars movies with comments
+
+## Movies [/movies]
+
+### Retrive all movies [GET]
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            message: "operation successful",
+            data:{
+                statusCode: 200,
+                results: 6,
+                description: "list of star wars movies",
+                movies: [
+                    {
+                        "title": "",
+                        "opening_crawl":"",
+                        "characters":[],
+                        "comments": 4
+                    }
+                ]
+            }
+        }
+        
+
+## Comments [/comments]
+
+
+### Retrieve All Comments [GET]
+
++ Response 200 (application/json)
+
+    + Body
+        
+            {
+                "success": true,
+                "message": "operation successful",
+                "data": {
+                    "statusCode": 200
+                    "description": "successfully retrived all comments",
+                    "comments": [
+                        {
+                            "id": 3,
+                            "comment": "hello star wars lovers",
+                            "ip_address": "192.168.0.3",
+                            "movie": "A New Hope",
+                            "createdAt": "2020-09-11T17:46:19.000Z"
+                        }
+                    ]
+                }
+            }
+
+### Add New Comment [POST]
+
++ Request (application/json)
+
+        {
+            "comment": "I love this movie",
+            "movies_title":"A New Hope"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "success": true,
+                "message": "operation successful",
+                "data": [
+                    "statusCode": 201,
+                    "description": "comment added successfully",
+                    "comment": {
+                        "comment": "I love this movie",
+                        "movies_title":"A New Hope"
+                    }
+                ]
+            }
