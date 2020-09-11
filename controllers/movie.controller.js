@@ -31,8 +31,8 @@ exports.getMovies = async (req, res)=>{
             movies.push({ 
                 title: movie.title, 
                 opening_crawl: movie.opening_crawl, 
-                characters: movie.characters, 
-                comments: comments.length 
+                characters: movie.characters,
+                comments: comments.filter(comment => comment.movie == movie.title).length
             });
         });
         res.status(200).json({

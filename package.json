@@ -17,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.4",
     "mysql": "^2.18.1",
+    "on-finished": "^2.3.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
