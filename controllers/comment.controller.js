@@ -2,7 +2,7 @@ const database = require("../config/database");
 
 exports.addComment = async(req, res)=>{
 
-    await database.query("CREATE TABLE IF NOT EXISTS comments(id INT AUTO_INCREMENT NOT NULL, comment TEXT, ip_address TEXT, createdAt DATE)", (err, result, fields)=>{
+    await database.query("CREATE TABLE IF NOT EXISTS comments(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, comment TEXT, ip_address TEXT, createdAt DATE)", (err, result, fields)=>{
         if(err){
             console.log(err);
             process.exit();
