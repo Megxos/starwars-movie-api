@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const database =  require("./config/database");
 const cors = require("cors");
 
 const { LOCAL_PORT, PORT } = process.env;
@@ -16,25 +15,16 @@ const base = "/api/v1";
 // import routes
 const movies = require("./routes/movie");
 const comments = require("./routes/comment");
+const characters = require("./routes/characters");
 
 // connect routes to server
 app.use(`${base}/movies`, movies);
 app.use(`${base}/comments`, comments);
+app.use(`${base}/characters`, characters);
 
 // root route
 app.get("/", (req, res)=>{
-    return res.redirect(base);
-});
-
-app.get("/api/v1", (req, res)=>{
-    return res.status(200).json({
-        sucess: true,
-        message: "api root route",
-        data: {
-            statusCode: 200,
-            description: "api root route"
-        }
-    });
+    return res.redirect("http://swapilite.docs.apiary.io/#");
 });
 
 const port = PORT || LOCAL_PORT;

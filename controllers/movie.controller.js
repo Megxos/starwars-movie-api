@@ -2,22 +2,36 @@
 const database = require("../config/database");
 const request = require("request");
 
-const { DB_NAME } = process.env;
-
 exports.getMovies = async (req, res)=>{
     let movies = [];
     let comments = [];
     
     await database.query(`SELECT * FROM comments`, (error, result, fields)=>{
         if(error){
-            return console.log(error);
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: "operation unsuccessful",
+                error: {
+                    statusCode: 500,
+                    description: "could not retrieve comments"
+                }
+            });
         }
         comments = result;
     });
 
     request.get("https://swapi.dev/api/films", async(error, response, body)=>{
         if(error){
-            return console.log(error);
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: "operation unsuccessful",
+                error: { 
+                    statusCode: 500,
+                    description: "could not retrieve movies"
+                }
+            });
         }
         // parse body and pick out required fields
         let parsedBody = await JSON.parse(body).results;
@@ -35,7 +49,7 @@ exports.getMovies = async (req, res)=>{
                 comments: comments.filter(comment => comment.movie == movie.title).length
             });
         });
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "operation successful",
             data: { 

@@ -23,8 +23,9 @@ exports.addComment = async(req, res)=>{
             process.exit();
         }
     });
-
+    // ip address of client
     let ip_address = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+
     let { comment, movie_title } = req.body;
 
     if(!comment || !movie_title){
@@ -51,7 +52,15 @@ exports.addComment = async(req, res)=>{
 
     await database.query("INSERT INTO comments(ip_address, movie, comment) VALUES (?, ?, ?)",  [ip_address, movie_title, comment], (error, result, fields)=>{
         if(error){
-            return console.log(error);
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: "operation unsuccessful",
+                error: {
+                    statusCode: 500,
+                    description: "could not create comment"
+                }
+            });
         }
         return res.status(201).json({
             success: true,
@@ -79,7 +88,7 @@ exports.getAll = async(req, res)=>{
         comments = comments.filter(comment => comment.movie == movie);
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         success: true,
         message: "operation successful",
         data: {

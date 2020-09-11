@@ -3,6 +3,8 @@ A Movie API for listing the names of Star
 Wars movies along with their opening crawls and comment counts, adding and listing anonymous
 comments for a movie, and getting the character list for a movie.
 
+API HOME: [https://swapi-lite.herokuapp.com/api/v1](https://swapi-lite.herokuapp.com/api/v1)
+
 See complete documentation at [https://swapilite.docs.apiary.io/](https://swapilite.docs.apiary.io/)
 
 ## Usage
@@ -13,5 +15,5 @@ See complete documentation at [https://swapilite.docs.apiary.io/](https://swapil
 * finally start the development server using `npm run dev` or `npm start` to use default nodeJS
 
 ## Endpoints
-* `/movies`
-* `/comments`
+* /movies
+* /comments
