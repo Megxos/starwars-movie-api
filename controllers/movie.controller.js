@@ -1,4 +1,3 @@
-// INSERT INTO `starwars_db`.`comments` (`id`, `createdAt`, `ip_address`, `comment`) VALUES ('2', '2020-09-11', '192.168.0.3', 'I love star wars');
 const database = require("../config/database");
 const request = require("request");
 

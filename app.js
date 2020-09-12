@@ -26,6 +26,9 @@ app.use(`${base}/characters`, characters);
 app.get("/", (req, res)=>{
     return res.redirect("http://swapilite.docs.apiary.io/#");
 });
+app.get("*", (req, res)=>{
+    return res.redirect("/");
+});
 
 const port = PORT || LOCAL_PORT;
 app.listen(port, ()=>{
