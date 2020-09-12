@@ -7,6 +7,8 @@ Movie api for listing the names of Star Wars movies with comments
 
 ## Movies [/movies]
 
+This endpoint returns a list of star wars movies with their comment count, opening crawls and chracter list
+
 ### Retrive all movies [GET]
 
 + Response 200 (application/json)
@@ -30,13 +32,18 @@ Movie api for listing the names of Star Wars movies with comments
         }
         
 
-## Comments [/comments]
+## Comments [/comments{?movie}]
 
+The comments endpoint is used to add and retrieve comments on a movie
 
 ### Retrieve All Comments [GET]
 
-+ Response 200 (application/json)
++ Parameters
+    + movie(optional) - name of movie to retrieve comments 
 
+
++ Response 200 (application/json)
+te
     + Body
         
             {
@@ -63,7 +70,7 @@ Movie api for listing the names of Star Wars movies with comments
 
         {
             "comment": "I love this movie",
-            "movies_title":"A New Hope"
+            "movie_title":"A New Hope"
         }
 
 + Response 201 (application/json)
@@ -73,12 +80,35 @@ Movie api for listing the names of Star Wars movies with comments
             {
                 "success": true,
                 "message": "operation successful",
-                "data": [
+                "data": {
                     "statusCode": 201,
                     "description": "comment added successfully",
                     "comment": {
                         "comment": "I love this movie",
                         "movies_title":"A New Hope"
                     }
-                ]
+                }
+            }
+            
+            
+## Characters [/characters{?movie}]
+
+### Get All Characters in a Movie [GET]
+
++ Parameters
+    + movie(required) - name of movie to retrive characters from
+
++ Response 200 (application/json)
+
+    + body
+    
+            {
+                "success": true,
+                "message": "operation successful",
+                "data": {
+                    "statusCode": 200,
+                    "description": "successfully retrieved movie characters",
+                    "movie": "A New Hope"
+                    "characters": []
+                }
             }
